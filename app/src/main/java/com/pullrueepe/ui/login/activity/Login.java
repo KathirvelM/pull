@@ -49,6 +49,10 @@ public class Login extends BaseActivity implements LoginContractor.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mTelephonyManager = (TelephonyManager)
+                getSystemService(this.TELEPHONY_SERVICE);
+
         if (appRepository.isLoggedIn()) {
             startActivity(MainActivity.newInstance(Login.this, session_id,
                     client_id, userName, "Funds"));
@@ -83,8 +87,13 @@ public class Login extends BaseActivity implements LoginContractor.View {
                         PERMISSIONS_REQUEST_READ_PHONE_STATE);
             } else {
                 String imei = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                     imei = mTelephonyManager.getImei();
+                }*/
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    imei = mTelephonyManager.getImei();
+                } else {
+                    imei = mTelephonyManager.getDeviceId();
                 }
                 Log.e("imei", "=" + imei);
                 if (imei != null && !imei.isEmpty()) {

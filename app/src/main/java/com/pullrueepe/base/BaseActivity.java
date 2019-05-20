@@ -15,13 +15,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-
 import com.pullrueepe.R;
 import com.pullrueepe.data.source.AppDataSource;
 import com.pullrueepe.data.source.AppRepository;
 import com.pullrueepe.data.source.sharedpreference.AppPreferenceDataSource;
 import com.pullrueepe.util.NetworkUtils;
-
 
 import butterknife.ButterKnife;
 
@@ -70,7 +68,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void hideProgress() {
-        progressDialog.dismiss();
+        if (progressDialog != null)
+            progressDialog.dismiss();
     }
 
 

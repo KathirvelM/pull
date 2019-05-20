@@ -110,7 +110,7 @@ public class FundsActivity extends BaseFragment implements FundsContractor.View,
         double profitloss = 0;
         double profitlosspercentage = 0;
         Log.d("Size", "" + pullrupeeData.size());
-        for (int i = 0; i <= pullrupeeData.size(); i++) {
+        for (int i = 0; i < pullrupeeData.size(); i++) {
             currentinvestment = funds.getPullrupeedata().get(i).getCurrentinvestment();
             currentValue = funds.getPullrupeedata().get(i).getCurrentvalue();
             profitloss = funds.getPullrupeedata().get(i).getProfitloss();

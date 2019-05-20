@@ -118,9 +118,22 @@ public class MainActivity extends BaseActivity
 
 
     public void hideKeyboard() {
-        InputMethodManager inputMethodManager = (InputMethodManager)
+        /*InputMethodManager inputMethodManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);*/
+
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        View focusedView = getCurrentFocus();
+        /*
+         * If no view is focused, an NPE will be thrown
+         *
+         * Maxim Dmitriev
+         */
+        if (focusedView != null) {
+            inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 
     @Override
